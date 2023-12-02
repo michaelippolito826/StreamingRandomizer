@@ -14,30 +14,48 @@ function randomEpisodeButton() {
   randomButtonDiv.className = "randomButtonDiv";
 
   randomButton.innerText = "Random Episode";
+
   randomButton.style.fontFamily =
     "Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif";
+  randomButton.style.fontSize = "18px";
+  randomButton.style.borderRadius = "0.2em";
+  randomButton.style.padding = "0.5em 1em";
+  randomButton.style.minWidth = "4em";
+  randomButton.style.float = "right";
+  randomButton.style.boxSizing = "border-box";
+  randomButton.style.backgroundColor = "rgb(36, 36, 36)";
+  randomButton.style.border = "0.1em solid rgb(77, 77, 77)";
+  randomButton.style.width = "200px";
+  randomButton.style.height = "40px";
+  randomButton.style.maxHeight = "100px";
+  randomButton.style.maxWidth = "200px";
+  randomButton.style.paddingTop = "7px";
+  randomButton.style.fontWeight = "bold";
 
   randomButtonDiv.appendChild(randomButton);
   episodeSelectorHeaderDiv.appendChild(randomButtonDiv);
 
   episodeSelectorHeaderDiv.style.gridTemplateColumns = "1.5fr 1fr 1fr";
 
-  console.log(episodeSelectorHeaderDiv);
+  randomButton.addEventListener("click", function () {
+    clickSeasonDropDown();
+    clickRandomEpisode();
+  });
 }
 
 function clickRandomEpisode() {
-  setTimeout(() => {
-    // Modify this selector based on the structure of the Netflix website
+  document.addEventListener("DOMContentLoaded", function () {
     const episodeList = document.querySelectorAll(".titleCardList--container");
 
     const randomIndex = getRandomInt(0, episodeList.length - 1);
     const randomEpisode = episodeList[randomIndex];
 
+    console.log(episodeList.length);
     console.log(randomIndex);
 
     // Click on the random episode
     randomEpisode.click();
-  }, 4000);
+  });
 }
 
 function clickSeasonDropDown() {
@@ -58,7 +76,5 @@ window.addEventListener("load", () => {
   // Adjust the delay based on the structure and loading time of the Netflix website
   setTimeout(() => {
     randomEpisodeButton();
-    // clickSeasonDropDown();
-    // clickRandomEpisode();
   }, 3000);
 });
